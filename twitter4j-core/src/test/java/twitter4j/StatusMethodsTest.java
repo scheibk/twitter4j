@@ -177,7 +177,7 @@ public class StatusMethodsTest extends TwitterTestBase {
         assertTrue(entities[0].getStart() < entities[0].getEnd());
 
         UserMentionEntity[] userMentions = status.getUserMentionEntities();
-        assertEquals(1, userMentions.length);
+        assertEquals(0, userMentions.length);
         assertEquals(15928023, userMentions[0].getId());
         assertEquals("SonatypeNexus", userMentions[0].getScreenName());
         assertEquals("Sonatype Nexus", userMentions[0].getName());

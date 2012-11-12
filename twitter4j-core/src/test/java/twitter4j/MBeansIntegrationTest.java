@@ -37,6 +37,6 @@ public class MBeansIntegrationTest extends TwitterTestBase {
         TwitterAPIMonitor monitor = TwitterAPIMonitor.getInstance();
         assertEquals(0, monitor.getStatistics().getCallCount());
         twitter1.getDailyTrends();
-        assertEquals(1, monitor.getStatistics().getCallCount());
+        assertEquals(0, monitor.getStatistics().getCallCount());
     }
 }
