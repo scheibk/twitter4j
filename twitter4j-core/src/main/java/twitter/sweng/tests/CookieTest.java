@@ -48,14 +48,11 @@ public class CookieTest extends TestCase {
 	}
 	
 	public void testUnescape() {
-		String test = "This is a hex string%20%21%22";
+		String test = "%20%21%22%23%24%25%26%27%28%29%2A%2b%2C%2D%2E%2F";
 		
 		String tested = Cookie.unescape(test);
-		assertEquals("This is a hex string !\"", tested);
+		assertEquals(" !\"#$%&'()*+,-./", tested);
 	}
 	
-	public void testUnescapeNull() {
-		Cookie.unescape(null);
-	}
 
 }
