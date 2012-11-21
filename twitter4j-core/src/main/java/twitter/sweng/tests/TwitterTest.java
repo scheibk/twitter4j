@@ -103,7 +103,7 @@ public class TwitterTest extends TestCase {
 		assertNotNull(update);
 	}
 	
-	/*
+	
 	public void testUpdateStatusNull() {
 		String tweet = null;
 		Status update = null;
@@ -113,11 +113,11 @@ public class TwitterTest extends TestCase {
 			fail(e.getMessage());
 		}
 			
-		assertNotNull(update);
-	}*/
+		assertNull(update);
+	}
 	
 	private String generateRandom(int length) {
-		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()\\\"';:,./?|=+-_`~";
+		String characters = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()\\\"';:,./?|=+-_`~[]{}";
 		String ret = new String();
 		
 		Random r = new Random();
@@ -149,6 +149,23 @@ public class TwitterTest extends TestCase {
 		} catch (TwitterException e) {
 			fail(e.getMessage());
 		}
+	}
+	
+	public void testshowTweet() {
+		Status tweet = null;
+		try {
+			tweet = twitter.updateStatus(generateRandom(140));
+		} catch (TwitterException e) {
+			fail(e.getMessage());
+		}
+		
+		Status tweet2 = null;
+		try {
+			tweet2 = twitter.showStatus(tweet.getId());
+		} catch (TwitterException e) {
+			fail(e.getMessage());
+		}
+		assertEquals(tweet, tweet2);
 	}
 
 }
