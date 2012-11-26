@@ -4,11 +4,13 @@ import java.io.File;
 import java.util.Random;
 
 import junit.framework.TestCase;
+import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
+import twitter4j.User;
 import twitter4j.conf.ConfigurationBuilder;
 
 public class TwitterTest extends TestCase {
@@ -166,6 +168,30 @@ public class TwitterTest extends TestCase {
 			fail(e.getMessage());
 		}
 		assertEquals(tweet, tweet2);
+	}
+	
+	public void testGetUserTimeline() {
+		ResponseList<Status> list = null;
+		
+		try {
+			list = twitter.getUserTimeline();
+		} catch (TwitterException e) {
+			fail("TwitterException thrown");
+		}
+		
+		assertNotNull(list);
+		assertTrue(list.size() > 0);
+	}
+	
+	public void testVerifyCredentials() {
+		try {
+			User u = twitter.verifyCredentials();
+			assertEquals("SWENG 581", u.getName());
+			assertEquals(925557278, u.getId());
+		} catch (TwitterException e) {
+			fail(e.getMessage());
+		}
+		
 	}
 
 }
